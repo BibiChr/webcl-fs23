@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <title>Standard HTML Input Controls</title>
     <style>
+        /* fängt immer oben an und läuft im Uhrzeigersinn */
         .inputs {
             display: grid;
             grid-template-columns: max-content auto;
             justify-items: left;
-            gap: .3em 2em;
-        }
-        input {
-            text-transform: uppercase;
+            gap: .2em 2em;
         }
 
+        :invalid {
+            color: red;
+            background-color: yellow;
+        }
+
+        input[type="text"] {
+            text-transform: uppercase;
+        }
     </style>
     <script>
         const toggleLED = el => el.setAttribute("src", el.src.match("on") ? "led_red_off.png" : "led_red_on.png");
@@ -27,10 +33,11 @@
         <option>third</option>
     </datalist>
     <div class = "inputs">
-        <label for="t1">text</label>        <input id="t1"  type="text" pattern="[A-Z]*">
+        <label for="t1">text</label>        <input id="t1"  type="text" required pattern="[A-Z]">
         <label for="t1l">datalist</label>   <input id="t1l" type="text" list="choices">
         <label for="t13">password</label>   <input id="t13" type="password">
-        <label for="t17">search</label>     <input id="t17" required type="search">
+        <label for="t17">search</label>     <input id="t17" type="search" pattern="(.)\1"> <!-- group catch -->
+        <label for="t172">search</label>    <input id="t172" type="search" pattern="..."> <!-- group catch -->
         <label for="t7" >email</label>      <input id="t7"  type="email">
         <label for="t21">url</label>        <input id="t21" type="url">
         <label for="t19">tel</label>        <input id="t19" type="tel">
